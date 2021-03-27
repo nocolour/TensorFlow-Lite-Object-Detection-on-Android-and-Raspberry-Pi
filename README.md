@@ -491,13 +491,13 @@ python TFLite_detection_stream.py --modeldir=TFLite_model --streamurl="http://ip
 To run the video detection script, issue:
 
 ```
-python TFLite_detection_image.py --modeldir=TFLite_model
+python TFLite_detection_video.py --modeldir=TFLite_model
 ```
 
 A window will appear showing consecutive frames from the video, with each object in the frame labeled. Press 'q' to close the window and end the script. By default, the video detection script will open a video named 'test.mp4'. To open a specific video file, use the `--video` option:
 
 ```
-python TFLite_detection_image.py --modeldir=TFLite_model --video='birdy.mp4'
+python TFLite_detection_video.py --modeldir=TFLite_model --video='test.mp4'
 ```
 
 Note: Video detection will run at a slower FPS than realtime webcam detection. This is mainly because loading a frame from a video file requires more processor I/O than receiving a frame from a webcam.
@@ -554,3 +554,13 @@ Here’s how you can check the version of TensorFlow you used for training.
 
 #### Building TensorFlow from source
 In case you run into error `error C2100: illegal indirection` during TensorFlow compilation, simply edit the file `tensorflow-build\tensorflow\tensorflow\core\framework\op_kernel.h`, go to line 405, and change `reference operator*() { return (*list_)[i_]; }` to `reference operator*() const { return (*list_)[i_]; }`. Credits go to: https://github.com/tensorflow/tensorflow/issues/15925#issuecomment-499569928
+
+python TFLite_detection_webcam.py --modeldir=TFLite_model 
+or
+python TF_detection_webcam.py
+
+python TFLite_detection_image.py --modeldir=TFLite_model --image=test1.jpg
+
+python TFLite_detection_video.py --modeldir=TFLite_model --video='test.mp4'
+
+python TFLite_detection_stream.py --modeldir=TFLite_model --streamurl="http://ipaddress:port/stream/video.mjpeg" --resolution=1920x1080
